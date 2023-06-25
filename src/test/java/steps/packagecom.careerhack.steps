@@ -1,0 +1,46 @@
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.Chrome.ChromeDriver;
+
+
+Import com.careerhack.common.GoogleBase;
+Import com.careerhack.pages.GoogleHome;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+Public class TeamPossible_GoogleSearch extends GoolgleBase{
+
+GoogleHome gh;
+@Given("I am on the google homepage")
+public void i_am_on_the_google_homepage(){
+	launchBrowser();
+}
+
+@When("I enter search {string}")
+public void i_enter_search(String string){
+
+gh = new GoogleHome(driver);
+gh.enterSearch(string);
+}
+
+@When("I click on google search button")
+public void i_click_on_google_search_button(){
+
+gh.clickSearch();
+}
+
+@Then("I receive related search result")
+public void i_receive_related_search_result(){
+
+	WebElement results = driver.findElement(By.Id("result-stats"));
+	String displayResults = results.getText();
+	
+	System.out.println("******************************************");
+	System.out.println(displayResults);
+	System.out.println("******************************************");
